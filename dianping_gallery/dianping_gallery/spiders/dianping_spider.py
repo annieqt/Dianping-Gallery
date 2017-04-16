@@ -6,7 +6,7 @@ class DianpingSpider(scrapy.Spider):
     start_urls = [
         'http://www.dianping.com/member/44509194/reviews',
     ]
-
+    print("test")
     def parse(self, response):
         user_id = response.css('.pic a::attr("href")').extract_first().split('/')[-1]
         user_name = response.css('div.head-user h2.name::text').extract_first()

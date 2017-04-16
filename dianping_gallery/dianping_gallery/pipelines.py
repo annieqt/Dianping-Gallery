@@ -13,10 +13,11 @@ from scrapy.exceptions import DropItem
 
 class ReviewImagesPipeline(ImagesPipeline):
 	def item_completed(self, results, item, info):
+		shop = item['shop']
+		user_name = item['user_name']		
+		print("Review & Photos by user:", user_name, "at shop:", shop, "downloaded successfully!")
 		for result in [x for ok, x in results if ok]:
 			path = result['path']
-			shop = item['shop']
-			user_name = item['user_name']
 			settings = get_project_settings()
 			storage = settings.get('IMAGES_STORE')
 			target_path = os.path.join(storage, user_name, shop, os.path.basename(path))
