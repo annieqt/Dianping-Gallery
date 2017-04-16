@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 
 # Scrapy settings for dianping_gallery project
@@ -27,10 +28,10 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+CONCURRENT_REQUESTS_PER_IP = 1
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
@@ -52,9 +53,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'dianping_gallery.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+	'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None,  
+	'dianping_gallery.middlewares.RotateUserAgentMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -65,10 +67,16 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'scrapy.pipelines.images.ImagesPipeline': 1
+   'dianping_gallery.pipelines.ReviewImagesPipeline': 1,
+   # 'scrapy.pipelines.files.FilesPipeline': 1,
+   # 'scrapy.pipelines.images.ImagesPipeline': 1
 }
 
-IMAGES_STORE = '/imgs'
+CUR_DIR = os.path.dirname(os.path.realpath(__file__))
+IMAGES_STORE = os.path.join(CUR_DIR, '..', 'imgs')
+# IMAGES_STORE = 'D:\workspace\python\Dianping-Gallery\dianping_gallery\dianping_gallery\imgs'
+# FILES_STORE = "D:\workspace\python\Dianping-Gallery\output"
+LOG_LEVEL = 'ERROR'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -81,7 +89,7 @@ IMAGES_STORE = '/imgs'
 # each remote server
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
-AUTOTHROTTLE_DEBUG = False
+#AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings

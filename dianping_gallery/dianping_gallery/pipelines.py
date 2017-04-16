@@ -1,22 +1,34 @@
-# -*- coding: utf-8 -*-
 
+import scrapy
+# -*- coding: utf-8 -*-
+from  scrapy.pipelines.images import ImagesPipeline
+import os, os.path
+from scrapy.utils.project import get_project_settings
+from scrapy.exceptions import DropItem
 # Define your item pipelines here
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class ReviewPipeline(ImagesPipeline):
-    def process_item(self, item, spider):
-        return item
-        
-    def get_media_requests(self, item, info):
-        for image_url in item['image_urls']:
-            yield scrapy.Request(image_url)
+class ReviewImagesPipeline(ImagesPipeline):
+	def item_completed(self, results, item, info):
+		for result in [x for ok, x in results if ok]:
+			path = result['path']
+			shop = item['shop']
+			user_name = item['user_name']
+			settings = get_project_settings()
+			storage = settings.get('IMAGES_STORE')
+			target_path = os.path.join(storage, user_name, shop, os.path.basename(path))
+			path = os.path.join(storage, path)
+			if not os.path.exists(os.path.join(storage, user_name, shop)):
+				os.makedirs(os.path.join(storage, user_name, shop))
+			os.rename(path, target_path)
 
-    def item_completed(self, results, item, info):
-        image_paths = [x['path'] for ok, x in results if ok]
-        if not image_paths:
-            raise DropItem("Item contains no images")
-        item['image_paths'] = image_paths
-        return item
+			# if not os.rename(path, target_path):
+			# 	print("if2:")
+			# 	raise DropItem("Could not move image to target folder")
+
+		if self.IMAGES_RESULT_FIELD in item.fields:
+			item[self.IMAGES_RESULT_FIELD] = [x for ok, x in results if ok]
+		return item			

@@ -8,10 +8,11 @@
 import scrapy
 
 class Review(scrapy.Item):
-	name = scrapy.Field()
-	title = scrapy.Field()
+	idx = scrapy.Field()
+	shop = scrapy.Field()
+	user_name = scrapy.Field()
 	address = scrapy.Field()
 	time = scrapy.Field()
 	rate = scrapy.Field()
 	content = scrapy.Field()
-	file_urls = scrapy.Field()
+	image_urls  = scrapy.Field()
