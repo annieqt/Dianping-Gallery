@@ -7,9 +7,8 @@ Crawl text & images from Dianping and generate pretty static pages!
 The downloaded images will be stored under `../imgs/`, sorted by `/user/shop/`   
 You can also custom images path by change in `IMAGES_STORE` in `settings.py`
 
-<img src="./preview/folders.png" height="631"> 
-
-<img src="./preview/images.png" height="634"> 
+![][folders]
+![][images]
 
 The text reviews are exported in Json format in `review.json`
 ![][review]
