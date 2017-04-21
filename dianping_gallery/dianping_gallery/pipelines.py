@@ -15,7 +15,7 @@ class ReviewImagesPipeline(ImagesPipeline):
 	def item_completed(self, results, item, info):
 		shop = item['shop']
 		user_name = item['user_name']		
-		print("Review & Photos by user:", user_name, "at shop:", shop, "downloaded successfully!")
+		print("Finish downloading Review & Photos by user:", user_name, "at shop:", shop)
 		for result in [x for ok, x in results if ok]:
 			path = result['path']
 			settings = get_project_settings()

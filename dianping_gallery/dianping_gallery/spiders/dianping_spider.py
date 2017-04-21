@@ -6,7 +6,6 @@ class DianpingSpider(scrapy.Spider):
     start_urls = [
         'http://www.dianping.com/member/44509194/reviews',
     ]
-    print("test")
     def parse(self, response):
         user_id = response.css('.pic a::attr("href")').extract_first().split('/')[-1]
         user_name = response.css('div.head-user h2.name::text').extract_first()
@@ -62,4 +61,5 @@ class DianpingSpider(scrapy.Spider):
             if src is None:
                 src = img.css('::attr("src")').extract_first()
             image_urls.append(src)       
+        print("Begin downloading: Review & Photos by user:", m['user_name'], "at shop:", m['shop'])
         yield Review(idx = m['idx'], shop = m['shop'], user_name = m['user_name'], address = m['address'], time = m['time'], rate = m['rate'], content = m['content'], image_urls  = image_urls)
