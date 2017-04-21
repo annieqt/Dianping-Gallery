@@ -21,12 +21,12 @@ To Be Done..
 * Install [Scrapy][scrapy] following the [tutorial][scrapy_tutorial]
 
 #### 2. Configurations
-* Set `start\_urls` in `dianping\_spider.py` to the url of the review page that you want to crawl
+* Set `start_urls` in `dianping_spider.py` to the url of the review page that you want to crawl
 
 #### 3. Run
 
-Under `../Dianping-Gallery/dianping\_gallery/dianping\_gallery/spiders`, run:   
-`scrapy runspider dianping_spider.py -o review.json`
+Under `../Dianping-Gallery/dianping_gallery/dianping_gallery/spiders`, run:   
+`scrapy runspider dianping_spider.py -o review.json`  
 The downloading process will then be shown in the cmd tools
 ![][cmd]
 
@@ -36,4 +36,4 @@ The downloading process will then be shown in the cmd tools
 [python]: https://www.python.org/
 [scrapy]: https://scrapy.org/
 [scrapy_tutorial]: https://docs.scrapy.org/en/latest/intro/install.html
-[cmd]: ./preview/cmd.PNG
+[cmd]: ./preview/cmd.png
