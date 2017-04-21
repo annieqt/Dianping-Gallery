@@ -25,7 +25,7 @@ To Be Done..
 * Install [Scrapy][scrapy] following the [tutorial][scrapy_tutorial]
 
 #### 2. Configurations
-* Set `start_urls` in `dianping_spider.py` to the url of the review page that you want to crawl. e.g., click [here][author] to view author's dianping reviews page
+* Set `start_urls` in `dianping_spider.py` to the url of the review page that you want to crawl. e.g., click [here][author] to view my dianping reviews page
 
 #### 3. Run
 
