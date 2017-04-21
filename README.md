@@ -7,8 +7,9 @@ Crawl text & images from Dianping and generate pretty static pages!
 The downloaded images will be stored under `../imgs/`, sorted by `/user/shop/`   
 You can also custom images path by change in `IMAGES_STORE` in `settings.py`
 
-![][folders]
-![][images]  
+<img src="./preview/folders.png"> 
+
+<img src="./preview/images.png"> 
 
 The text reviews are exported in Json format in `review.json`
 ![][review]
@@ -27,13 +28,14 @@ To Be Done..
 
 Under `../Dianping-Gallery/dianping_gallery/dianping_gallery/spiders`, run:   
 `scrapy runspider dianping_spider.py -o review.json`  
-The downloading process will then be shown in the cmd tools
-![][cmd]
+The downloading process will then be shown in the cmd tools  
+<img src="./preview/cmd.png"> 
 
 [folders]: ./preview/folders.png
 [images]: ./preview/images.png
 [review]: ./preview/review.PNG
+[cmd]: ./preview/cmd.png
+
 [python]: https://www.python.org/
 [scrapy]: https://scrapy.org/
 [scrapy_tutorial]: https://docs.scrapy.org/en/latest/intro/install.html
-[cmd]: ./preview/cmd.png
