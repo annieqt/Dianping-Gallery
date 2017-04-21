@@ -16,15 +16,24 @@ The text reviews are exported in Json format in `review.json`
 To Be Done..
 
 ## How to run:
-#### 1. Configurations
+#### 1. Dependencies
+* Install [Python 3.6][python]
+* Install [Scrapy][scrapy] following the [tutorial][scrapy_tutorial]
+
+#### 2. Configurations
 * Set `start\_urls` in `dianping\_spider.py` to the url of the review page that you want to crawl
-#### 2. Run
+
+#### 3. Run
 
 Under `../Dianping-Gallery/dianping\_gallery/dianping\_gallery/spiders`, run:   
 `scrapy runspider dianping_spider.py -o review.json`
-
-
+The downloading process will then be shown in the cmd tools
+![][cmd]
 
 [folders]: ./preview/folders.png
 [images]: ./preview/images.png
 [review]: ./preview/review.PNG
+[python]: https://www.python.org/
+[scrapy]: https://scrapy.org/
+[scrapy_tutorial]: https://docs.scrapy.org/en/latest/intro/install.html
+[cmd]: ./preview/cmd.PNG
