@@ -33,7 +33,7 @@ Under `../Dianping-Gallery/dianping_gallery/dianping_gallery/spiders`, run:
 `scrapy runspider dianping_spider.py -o review.json`  
 
 The downloading process will then be shown in the command screen  
-<img src="./preview/cmd.png" width="799"> 
+<img src="./preview/cmd.png" width="700"> 
 
 [images]: ./preview/images.png
 [review]: ./preview/review.PNG
