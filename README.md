@@ -1,9 +1,9 @@
 # Dianping-Gallery
-Use [Scrapy][scrapy] to crawl text & images from [Dianping.com][dianping] and generate pretty static pages!
+Use [Scrapy][scrapy] to crawl text reviews & images from [Dianping.com][dianping] and generate pretty static pages!
 
 ## Features
 
-#### 1. Crawling text & images from a specific user's Dianping account and storing them locally
+#### 1. Crawling text reviews & images from a specific user's Dianping account and storing them locally
 **Images**  
 
 * The downloaded images will be stored under `../imgs/`, sorted by `/user/shop/`   
@@ -11,9 +11,9 @@ Use [Scrapy][scrapy] to crawl text & images from [Dianping.com][dianping] and ge
 
 ![][images]  
 
-**Text**  
+**Text Reviews**  
 
-* The text reviews are exported in Json format in `review.json`  
+* The text reviews are exported in JSON format in `review.json`  
 
 ![][review]
 #### 2. Generating pretty static pages from crawled data to visualize the user's FOOD preference!
@@ -32,7 +32,7 @@ To Be Done..
 Under `../Dianping-Gallery/dianping_gallery/dianping_gallery/spiders`, run:   
 `scrapy runspider dianping_spider.py -o review.json`  
 
-The downloading process will then be shown in the command screen  
+The downloading process will then show in the command screen  
 <img src="./preview/cmd.png" width="700"> 
 
 [images]: ./preview/images.png
