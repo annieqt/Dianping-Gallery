@@ -21,7 +21,7 @@ class DianpingSpider(scrapy.Spider):
 
             yield scrapy.Request(
                             album_url, 
-                            callback=self.get_image_urls,
+                            callback=self.get_review,
                             headers = {
                                 'Cache-Control': 'no-cache',
                                 'Connection': 'keep-alive',
@@ -44,7 +44,8 @@ class DianpingSpider(scrapy.Spider):
                             'address': address,
                             'time': time,
                             'rate': rate,
-                            'content': content
+                            'content': content,
+                            'image_urls':[]
                             }
             )
 
@@ -53,13 +54,32 @@ class DianpingSpider(scrapy.Spider):
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse)
 
-    def get_image_urls(self, response):
+    def get_review(self, response):
         m = response.request.meta
-        image_urls = []
+        image_urls = m['image_urls']
         for img in response.css('li.J_pic-set img'):
             src = img.css('::attr("data-src")').extract_first()
             if src is None:
                 src = img.css('::attr("src")').extract_first()
             image_urls.append(src)       
-        print("Begin downloading: Review & Photos by user:", m['user_name'], "at shop:", m['shop'])
-        yield Review(idx = m['idx'], shop = m['shop'], user_name = m['user_name'], address = m['address'], time = m['time'], rate = m['rate'], content = m['content'], image_urls  = image_urls)
+        next_page = response.css('.Pages .NextPage::attr("href")').extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(
+                next_page, 
+                callback=self.get_review,
+                meta = {
+                            'user_id': m['user_id'],
+                            'idx': m['idx'],
+                            'shop': m['shop'],
+                            'user_name': m['user_name'],
+                            'address': m['address'],
+                            'time': m['time'],
+                            'rate': m['rate'],
+                            'content': m['content'],
+                            'image_urls': image_urls
+                            }
+                )
+        else:
+            print("Start downloading: Review & Photos by user:", m['user_name'], "at shop:", m['shop'])
+            yield Review(idx = m['idx'], shop = m['shop'], user_name = m['user_name'], address = m['address'], time = m['time'], rate = m['rate'], content = m['content'], image_urls  = image_urls)

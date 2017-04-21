@@ -1,5 +1,5 @@
 # Dianping-Gallery
-Crawling text & images from Dianping and generating pretty static pages!
+Crawl text & images from Dianping and generate pretty static pages!
 
 ## Features
 
@@ -21,7 +21,7 @@ To Be Done..
 #### 2. Run
 
 Under `../Dianping-Gallery/dianping\_gallery/dianping\_gallery/spiders`, run:   
-`>> scrapy runspider dianping_spider.py -o review.json`
+`scrapy runspider dianping_spider.py -o review.json`
 
 
 
